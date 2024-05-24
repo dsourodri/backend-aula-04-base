@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import "./database/connection.js";
+import Product from './database/Product.js';
 
 const app = express();
 
@@ -13,6 +15,16 @@ app.post("/products", async (request, response) => {
   if (!name || !description || typeof price !== "number") {
     return response.status(400).json({ message: "Invalid request body" });
   }
+
+  const newProduct = new Product({
+    name,
+    price,
+    description
+  });
+
+  await newProduct.save();
+
+  response.status(201).json({ newProduct });
 });
 
 // Read
