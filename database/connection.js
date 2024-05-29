@@ -2,8 +2,7 @@ import pkg from "mongoose";
 const { connect, connection, disconnect } = pkg;
 
 
-const uri =
-  "mongodb+srv://dsourodri:danixz2.0@cluster0.wqnxeig.mongodb.net/Product?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.MONGO_DB_URL;
 
 const clientOptions = { serverApi: { version: "1", strict: true, deprecationErrors: true } };
 
